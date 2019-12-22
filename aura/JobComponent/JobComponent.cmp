@@ -1,0 +1,34 @@
+<aura:component controller="JobDetails" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <c:RecruitmentComponentHeader TagLine="Recruitment App" 
+                           message="Search Jobs " />
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="jobs" type="Job_Opening__c[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />   
+    <br></br><br></br>
+     <div>
+        <div class="slds-grid slds-wrap">
+       <aura:iteration items="{!v.jobs}" var="item">
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <lightning:card title="{!item.Name}" footer="{!item.Job_Id__c}"  iconName="custom:custom7">
+                        <p class = "slds-p-around_small"> 
+                            <div class="slds-grid slds-gutters">
+                                <div class="slds-col slds-size_2-of-4">
+                                  <img src="{!$Resource.Job_Image}" height="80" width="80" /> 
+                                </div>
+                                <div class="slds-col slds-size_2-of-4">
+                                    Name: {!item.Name} <br />
+                                    Designation: {!item.Designation__c} <br />
+                                </div>
+                            </div>
+                        </p> 
+                        <aura:set attribute="actions">
+                             <lightning:button name="modal" label="View Details" onclick="{!c.handleShowModal}"/>
+
+                        </aura:set>
+                    </lightning:card>
+                </div>
+            </aura:iteration>
+         </div>
+    </div>
+</aura:component>

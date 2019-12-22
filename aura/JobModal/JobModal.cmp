@@ -1,0 +1,15 @@
+<aura:component >
+     <lightning:navigation aura:id="navigation" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute access="private" name="error" type="String" default=""/>
+    <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">      
+        <aura:if isTrue="{! !empty(v.error)}">
+            <ui:message title="Error" severity="error" closable="true">{!v.error}</ui:message>
+        </aura:if>
+       
+  <lightning:recordForm recordId="{!v.recordId}" objectApiName="Application__c" layoutType="Full"
+         columns="2"                    
+        mode="readonly">           
+        </lightning:recordForm>
+    </div>  
+</aura:component>

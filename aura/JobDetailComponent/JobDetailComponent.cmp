@@ -1,0 +1,33 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="recordId" type="Job_Opening__c[]" />
+ 
+      <lightning:overlayLibrary aura:id="overlayLib" />    
+   <aura:attribute name="jobId" type="String" />
+    <div>
+        <div class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.recordId}" var="item">
+                <div class="slds-col slds-size_1-of-4 slds-p-around_small">
+                    <lightning:card title="{!item.Job_Id__c}" footer="{!item.Name}"  iconName="custom:custom7">
+                        <p class = "slds-p-around_small"> 
+                            <div class="slds-grid slds-gutters">
+                              <!--  <div class="slds-col slds-size_1-of-4">
+                                    <img src="{!$Resource.BeerImage}" height="80" width="80" /> 
+                                </div> -->
+                                <div class="slds-col slds-size_2-of-4">
+                                    Name: {!item.Name} <br />
+                                    Job Id: {!item.Job_Id__c} <br />
+                                   
+                                </div>
+                            </div>
+                        </p> 
+                        <aura:set attribute="actions">
+                            <lightning:button name="{!item.Id}" label="ViewDetails" value="ViewDetails" 
+                                              variant="brand"
+                                              onclick="{!c.showInfo}"/>
+                        </aura:set>
+                    </lightning:card>
+                </div>
+            </aura:iteration>
+        </div>
+    </div>
+</aura:component>
